@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 我的博客]]></title>
   <link href="http://blog.sinopec-wh.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://blog.sinopec-wh.com/"/>
-  <updated>2013-06-14T15:00:39+08:00</updated>
+  <updated>2013-06-14T15:11:37+08:00</updated>
   <id>http://blog.sinopec-wh.com/</id>
   <author>
     <name><![CDATA[unknown]]></name>
@@ -32,6 +32,8 @@
 <p>我也不知道如何调试ruby的程序，只好看看他的源代码了！哎！
  网上的代码是这样的</p>
 
+<p>```ruby</p>
+
 <pre><code>    module Jekyll 
       class CategoryListTag &lt; Liquid::Tag 
     def render(context) 
@@ -51,7 +53,8 @@
     Liquid::Template.register_tag('category_list', Jekyll::CategoryListTag)
 </code></pre>
 
-<p>编译时报错在</p>
+<p>```
+编译时报错在</p>
 
 <pre><code>category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase) 
 </code></pre>
