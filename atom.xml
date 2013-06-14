@@ -4,7 +4,7 @@
   <title><![CDATA[我的博客]]></title>
   <link href="http://blog.sinopec-wh.com/atom.xml" rel="self"/>
   <link href="http://blog.sinopec-wh.com/"/>
-  <updated>2013-06-14T14:01:27+08:00</updated>
+  <updated>2013-06-14T14:04:51+08:00</updated>
   <id>http://blog.sinopec-wh.com/</id>
   <author>
     <name><![CDATA[unknown]]></name>
@@ -20,8 +20,16 @@
     <id>http://blog.sinopec-wh.com/blog/2013/06/14/how-to-view-the-category-with-chinese</id>
     <content type="html"><![CDATA[<p>最近开始开始鼓捣octopress的博客。由于对ruby一窍不通，弄起来非常费劲。
 看到很多网上的文章，也不知道谁是原创的。但是可能是采用的版本比较老的缘故，一些方法都已经过时了。
-刚好我想要添加一个分类的列表到“边栏”，Octopress中叫做asides。按照网上的文章说的修改了一些文件，但是在generate的时候无法通过，好像报错说是编码的问题。于是我想到了我的博客上采用了中文的分类，Octopress已经在最新的版本中支持了中文分类，并且将url编译成拼音的字符串。但是网上提供的办法更不就无法编译通过，然道要用回英文分类，这不是倒退么？
-我也不知道如何调试ruby的程序，只好看看他的源代码了！哎！
+刚好我想要添加一个分类的列表到“边栏”，Octopress中叫做asides。按照网上的文章说的修改了一些文件，但是在generate的时候无法通过，好像报错说是编码的问题。于是我想到了我的博客上采用了中文的分类，Octopress已经在最新的版本中支持了中文分类，并且将url编译成拼音的字符串。但是网上提供的办法更不就无法编译通过，然道要用回英文分类，这不是倒退么？</p>
+
+<!--more-->
+
+
+<blockquote></blockquote>
+
+<hr />
+
+<p>我也不知道如何调试ruby的程序，只好看看他的源代码了！哎！
  网上的代码是这样的</p>
 
 <pre><code>    module Jekyll 
