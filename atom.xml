@@ -4,7 +4,7 @@
   <title><![CDATA[我的博客]]></title>
   <link href="http://blog.sinopec-wh.com/atom.xml" rel="self"/>
   <link href="http://blog.sinopec-wh.com/"/>
-  <updated>2013-06-14T13:17:50+08:00</updated>
+  <updated>2013-06-14T13:21:51+08:00</updated>
   <id>http://blog.sinopec-wh.com/</id>
   <author>
     <name><![CDATA[unknown]]></name>
@@ -27,6 +27,9 @@
 <p>Octopress的博客内容是通过Markdown来书写，所以您需要了解Markdown的编写规则，Markdown 语法说明可以让你在几分钟之内熟悉Markdown的语法，在Windows下可以使用MarkDown Pad或是使用在线的编辑器<a href="http://mahua.jser.me/%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%BE%91%EF%BC%9B">http://mahua.jser.me/%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%BE%91%EF%BC%9B</a></p>
 
 <p>Octopress通常会部署在GitHub上，所以您需要会一些简单的Git命令以及Gtihub的使用。</p>
+
+<!--more-->
+
 
 <h2>准备</h2>
 
