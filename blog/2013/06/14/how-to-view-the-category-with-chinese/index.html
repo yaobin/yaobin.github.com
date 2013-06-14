@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Hello World - 我的博客</title>
+  <title>怎样在页面上显示中文分类 - 我的博客</title>
   <meta name="author" content="unknown">
 
   
-  <meta name="description" content="开始这个博客了。 为什么要开这个博客呢？ 准备记录一些什么东西呢？ 记录的频率是多少？ 预计会有谁来看呢？ 1. 为什么要开这个博客呢？ 当然是为了记录一些日常需要记录和收集的资料。其实用于日常收集的软件有很多，有网络版的，有本地版的。这些都可以用于记录和收集。为什么还需要开一个博客？ &hellip;">
+  <meta name="description" content="最近开始开始鼓捣octopress的博客。由于对ruby一窍不通，弄起来非常费劲。
+看到很多网上的文章，也不知道谁是原创的。但是可能是采用的版本比较老的缘故，一些方法都已经过时了。
+刚好我想要添加一个分类的列表到“边栏”，Octopress中叫做asides。按照网上的文章说的修改了一些文件， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.sinopec-wh.com/blog/2013/06/08/hello-world">
+  <link rel="canonical" href="http://blog.sinopec-wh.com/blog/2013/06/14/how-to-view-the-category-with-chinese">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="我的博客" type="application/atom+xml">
@@ -68,7 +70,7 @@
   
   <header>
     
-      <h1 class="entry-title">Hello World</h1>
+      <h1 class="entry-title">怎样在页面上显示中文分类</h1>
     
     
       <p class="meta">
@@ -84,51 +86,54 @@
   
 
 
-<time datetime="2013-06-08T17:17:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2013</time>
+<time datetime="2013-06-14T13:40:00+08:00" pubdate data-updated="true">Jun 14<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h2>开始这个博客了。</h2>
+<div class="entry-content"><p>最近开始开始鼓捣octopress的博客。由于对ruby一窍不通，弄起来非常费劲。
+看到很多网上的文章，也不知道谁是原创的。但是可能是采用的版本比较老的缘故，一些方法都已经过时了。
+刚好我想要添加一个分类的列表到“边栏”，Octopress中叫做asides。按照网上的文章说的修改了一些文件，但是在generate的时候无法通过，好像报错说是编码的问题。于是我想到了我的博客上采用了中文的分类，Octopress已经在最新的版本中支持了中文分类，并且将url编译成拼音的字符串。但是网上提供的办法更不就无法编译通过，然道要用回英文分类，这不是倒退么？
+我也不知道如何调试ruby的程序，只好看看他的源代码了！哎！
+ 网上的代码是这样的</p>
 
-<hr />
+<pre><code>    module Jekyll 
+      class CategoryListTag &lt; Liquid::Tag 
+    def render(context) 
+      html = "" 
+      categories = context.registers[:site].categories.keys 
+      categories.sort.each do |category| 
+    posts_in_category = context.registers[:site].categories[category].size 
+    category_dir = context.registers[:site].config['category_dir'] 
+    category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase) 
+    html &lt;&lt; "&lt;li class='category'&gt;&lt;a href='/#{category_url}/'&gt;#{category} (#{posts_in_category})&lt;/a&gt;&lt;/li&gt;\n" 
+      end 
+      html 
+    end 
+      end 
+    end
 
-<ol>
-<li> 为什么要开这个博客呢？</li>
-<li> 准备记录一些什么东西呢？</li>
-<li> 记录的频率是多少？</li>
-<li> 预计会有谁来看呢？</li>
-</ol>
+    Liquid::Template.register_tag('category_list', Jekyll::CategoryListTag)
+</code></pre>
 
+<p>编译时报错在</p>
 
-<hr />
+<pre><code>category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase) 
+</code></pre>
 
-<!--more-->
+<p>经过一番波折，终于找到了解决的方案。其实很简单。由于新的版本已经支持了中文的分类，自然是支持直接输出分类的地址的。将上面报错的那行改成：</p>
 
+<pre><code>category_url = File.join(category_dir, category.to_url) 
+</code></pre>
 
-<h3>1. 为什么要开这个博客呢？</h3>
+<p>就好了。呵呵，是不是很简单呀！</p>
 
-<p>  <strong>当然</strong>是为了记录一些日常需要记录和收集的资料。其实用于日常收集的软件有很多，有网络版的，有本地版的。这些都可以用于记录和收集。为什么还需要开一个博客？其实这是一种自我约束的行为。本人的拖延症非常严重，明明有好多很重要的事情需要处理，但是就是提不起劲来，要不就是半途而废。我对自己这样的毛病也是深恶痛绝的，但是也没有好的办法。开通博客可以督促我认真的对待，因为会有很多人来看到我的这样的拖延而羞愧。</p>
+<p>哦，对了别忘了在 category_list_tag.rb中加入一行</p>
 
-<h3>2.准备记录一些什么东西呢?</h3>
-
-<ul>
-<li>首先是一些日常的随笔，日常活动和感受。这更像是一个微博，但是只记录一些比较特殊和重要的事件和想法。这也是不同于微博的那种事无巨细随时记录的方式。</li>
-<li>工作记录：工作中遇到的问题及其解决方案。这个可能会涉及到一些保密的内容，希望不会有人来追究。我也会注意尽量不涉及到特定公司的内容。</li>
-<li>项目开发笔记：由于经常会涉及到开发一些项目和一些新的创意。所以我会把它们都记录下来作为一个收集想法、方法、创意的收集器。</li>
-<li><h2>学习笔记：由于最近准备备考司法考试，也不知道能不能坚持下来。但是这个作为以后能否改善现况的重点内容，我希望我能把这个持续进行下去。</h2>
-
-<h3>3.记录的频率是多少？</h3>
-
-<p>其实这个对于一般的博主来说不是问题，但是由于我上面提及的拖延症的问题，我在这里才会特别提出这个问题。我希望，不，我决定每四天必须有一篇博文。对自己不能太放松，不然这个又成为了烂尾工程。</p></li>
-</ul>
-
-
-<h3>4.预计谁会来看</h3>
-
-<p>  呵呵，这个还真不好说。开始的时候我还是希望不要有人来看吧。嘻嘻</p>
+<pre><code>require 'stringex'
+</code></pre>
 </div>
 
 
@@ -151,12 +156,12 @@
   
 
 
-<time datetime="2013-06-08T17:17:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2013</time>
+<time datetime="2013-06-14T13:40:00+08:00" pubdate data-updated="true">Jun 14<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/sui-bi/'>随笔</a>
+    <a class='category' href='/blog/categories/octopress/'>octopress</a>
   
 </span>
 
@@ -172,8 +177,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2013/06/08/crete-blog-with-octopress-on-windows/" title="Previous Post: Windows下搭建Octopress博客">&laquo; Windows下搭建Octopress博客</a>
       
-        <a class="basic-alignment right" href="/blog/2013/06/08/crete-blog-with-octopress-on-windows/" title="Next Post: Windows下搭建Octopress博客">Windows下搭建Octopress博客 &raquo;</a>
       
     </p>
   </footer>
