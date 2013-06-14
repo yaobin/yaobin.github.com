@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://yaobin.github.io/blog/sitemap.xml 
+Sitemap: http://blog.sinopec-wh.com/sitemap.xml 

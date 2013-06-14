@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: 随笔 | 我的博客]]></title>
-  <link href="http://yaobin.github.io/blog/blog/categories/sui-bi/atom.xml" rel="self"/>
-  <link href="http://yaobin.github.io/blog/"/>
-  <updated>2013-06-14T10:43:23+08:00</updated>
-  <id>http://yaobin.github.io/blog/</id>
+  <link href="http://blog.sinopec-wh.com/blog/categories/sui-bi/atom.xml" rel="self"/>
+  <link href="http://blog.sinopec-wh.com/"/>
+  <updated>2013-06-14T11:14:12+08:00</updated>
+  <id>http://blog.sinopec-wh.com/</id>
   <author>
     <name><![CDATA[unknown]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Hello World]]></title>
-    <link href="http://yaobin.github.io/blog/blog/2013/06/08/hello-world/"/>
+    <link href="http://blog.sinopec-wh.com/blog/2013/06/08/hello-world/"/>
     <updated>2013-06-08T17:17:00+08:00</updated>
-    <id>http://yaobin.github.io/blog/blog/2013/06/08/hello-world</id>
+    <id>http://blog.sinopec-wh.com/blog/2013/06/08/hello-world</id>
     <content type="html"><![CDATA[<h2>开始这个博客了。</h2>
 
 <hr />
