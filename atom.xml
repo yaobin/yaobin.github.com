@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[我的博客]]></title>
+  <link href="http://blog.sinopec-wh.com/atom.xml" rel="self"/>
+  <link href="http://blog.sinopec-wh.com/"/>
+  <updated>2013-06-14T15:15:06+08:00</updated>
+  <id>http://blog.sinopec-wh.com/</id>
+  <author>
+    <name><![CDATA[unknown]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[怎样在页面上显示中文分类]]></title>
+    <link href="http://blog.sinopec-wh.com/blog/2013/06/14/how-to-view-the-category-with-chinese/"/>
+    <updated>2013-06-14T13:40:00+08:00</updated>
+    <id>http://blog.sinopec-wh.com/blog/2013/06/14/how-to-view-the-category-with-chinese</id>
+    <content type="html"><![CDATA[<p>最近开始开始鼓捣octopress的博客。由于对ruby一窍不通，弄起来非常费劲。
+看到很多网上的文章，也不知道谁是原创的。但是可能是采用的版本比较老的缘故，一些方法都已经过时了。
+刚好我想要添加一个分类的列表到“边栏”，Octopress中叫做asides。按照网上的文章说的修改了一些文件，但是在generate的时候无法通过，好像报错说是编码的问题。于是我想到了我的博客上采用了中文的分类，Octopress已经在最新的版本中支持了中文分类，并且将url编译成拼音的字符串。但是网上提供的办法更不就无法编译通过，然道要用回英文分类，这不是倒退么？</p>
+
+<!--more-->
+
+
+<blockquote></blockquote>
+
+<hr />
+
+<p>我也不知道如何调试ruby的程序，只好看看他的源代码了！哎！
+ 网上的代码是这样的</p>
+
+<pre><code>    module Jekyll 
+      class CategoryListTag &lt; Liquid::Tag 
+    def render(context) 
+      html = "" 
+      categories = context.registers[:site].categories.keys 
+      categories.sort.each do |category| 
+    posts_in_category = context.registers[:site].categories[category].size 
+    category_dir = context.registers[:site].config['category_dir'] 
+    category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase) 
+    html &lt;&lt; "&lt;li class='category'&gt;&lt;a href='http://blog.sinopec-wh.com/#{category_url}/'&gt;#{category} (#{posts_in_category})&lt;/a&gt;&lt;/li&gt;\n" 
+      end 
+      html 
+    end 
+      end 
+    end
+
+    Liquid::Template.register_tag('category_list', Jekyll::CategoryListTag)
+</code></pre>
+
+<p>编译时报错在</p>
+
+<pre><code>category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase) 
+</code></pre>
+
+<p>经过一番波折，终于找到了解决的方案。其实很简单。由于新的版本已经支持了中文的分类，自然是支持直接输出分类的地址的。将上面报错的那行改成：</p>
+
+<pre><code>category_url = File.join(category_dir, category.to_url) 
+</code></pre>
+
+<p>就好了。呵呵，是不是很简单呀！</p>
+
+<p>哦，对了别忘了在 category_list_tag.rb中加入一行</p>
+
+<pre><code>require 'stringex'
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Windows下搭建Octopress博客]]></title>
+    <link href="http://blog.sinopec-wh.com/blog/2013/06/08/create-blog-with-octopress-on-windows/"/>
+    <updated>2013-06-08T18:07:00+08:00</updated>
+    <id>http://blog.sinopec-wh.com/blog/2013/06/08/create-blog-with-octopress-on-windows</id>
+    <content type="html"><![CDATA[<h2>您需要掌握的</h2>
+
+<p>使用Octopress来搭建博客，还是有一定门槛的，看完本文后，希望您不会觉得很难。</p>
+
+<p>Octopress 是一款基于 Jekyll 的静态站点生成系统，使用Ruby实现，所以您需要懂点Ruby的知识，其实会几个命令就行；</p>
+
+<p>Octopress的博客内容是通过Markdown来书写，所以您需要了解Markdown的编写规则，Markdown 语法说明可以让你在几分钟之内熟悉Markdown的语法，在Windows下可以使用MarkDown Pad或是使用在线的编辑器<a href="http://mahua.jser.me/%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%BE%91%EF%BC%9B">http://mahua.jser.me/%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%BE%91%EF%BC%9B</a></p>
+
+<p>Octopress通常会部署在GitHub上，所以您需要会一些简单的Git命令以及Gtihub的使用。</p>
+
+<!--more-->
+
+
+<h2>准备</h2>
+
+<p>系统：Windows 2003 Server、Windows 7、Windows 2008R2 Server，这三个系统用下面的版本都安装成功过；</p>
+
+<p>Git：<a href="http://msysgit.googlecode.com/files/Git-1.8.1.2-preview20130201.exe">http://msysgit.googlecode.com/files/Git-1.8.1.2-preview20130201.exe</a></p>
+
+<p>Ruby：<a href="http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/rubyinstaller-1.9.3-p429.exe">http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/rubyinstaller-1.9.3-p429.exe</a></p>
+
+<p>DevKit：<a href="http://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe">http://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe</a></p>
+
+<p>Python：<a href="http://www.python.org/ftp/python/2.7.5/python-2.7.5.msi">http://www.python.org/ftp/python/2.7.5/python-2.7.5.msi</a></p>
+
+<p>Octopress：git://github.com/imathis/octopress.git</p>
+
+<h2>安装</h2>
+
+<p>安装Git
+Windows下安装Git很简单，一路next就可以了。</p>
+
+<p>安装Ruby
+Ruby的安装也是一路next就可以，不过记得勾选“Add Ruby executables to your PATH”，将Ruby的执行路径加入到环境变量中，如果忘记勾选，也可以手动设置。安装完后可以在命令提示符中输入ruby –version 来确认是否安装成功。</p>
+
+<p>安装DevKit
+DevKit下载下来的是一个自压缩文件，我们将其解压到D:/DevKit，有两点需要注意：</p>
+
+<ol>
+<li><p>解压目录中没有有中文和空格；</p></li>
+<li><p>必须先安装Ruby，而且Ruby需要是RubyInstallser安装。</p></li>
+</ol>
+
+
+<p>解压DevKit后，在命令行输入以下命令来进行安装：</p>
+
+<p>d:
+cd DevKit
+ruby dk.rb init
+ruby dk.rb install
+安装Python
+安装Python,也是一路next就可以，博客的代码高亮用到了Python的Pygments模块，在Python中安装第三方库需要使用easy_install，在下面地址下载跟Python相对应的安装程序安装后就可以使用easy_install了。</p>
+
+<p><a href="https://pypi.python.org/pypi/setuptools">https://pypi.python.org/pypi/setuptools</a></p>
+
+<p>easy_install会安装在Python安装目录的Scripts目录中，例如我的Python目录是C:\Python27，所以需要将C:\Python27\Scripts目录加入到环境变量中才能在命令提示符中使用easy_install命令。</p>
+
+<p>在命令提示符中输入如下命令就可以安装Pygments了。</p>
+
+<p>easy_install pygments
+安装Octopress
+首先在GitBash中输入如下命令将Octopress代码拉到本地，</p>
+
+<p>cd d:/GitProject
+git clone git://github.com/imathis/octopress.git octopress
+然后需要安装Octopress的依赖项，安装依赖项需要用到Ruby的gem，使用下面的命令可以更换gem的更新源，使用国内的淘宝镜像速度相对快点。</p>
+
+<p>gem sources -a <a href="http://ruby.taobao.org/">http://ruby.taobao.org/</a>
+gem sources -r <a href="http://rubygems.org/">http://rubygems.org/</a>
+gem sources -l
+修改Octopress目录下的Gemfile文件，将第一行的<a href="http://rubygems.org/">http://rubygems.org/</a> 修改为<a href="http://ruby.taobao.org/">http://ruby.taobao.org/</a></p>
+
+<p>在命令提示符中进入到Octopress目录，输入下面命令进行依赖项的安装</p>
+
+<p>gem install bundler
+bundle install
+输入下面的命令来安装Octopress的默认主题</p>
+
+<p>rake install
+到此所有的安装工作已经结束，输入下面的命令可以在本地进行预览。</p>
+
+<p>rake preview</p>
+
+<h2>解决中文问题</h2>
+
+<p>如果博客中包含中文，需要进行如下设置：</p>
+
+<ol>
+<li>在环境变量中设置下面的键值对；</li>
+</ol>
+
+
+<p>LANG=zh_CN.UTF-8
+LC_ALL=zh_CN.UTF-8</p>
+
+<ol>
+<li><p>含有中文的文件需要保存为UTF-8无BOM格式编码。</p></li>
+<li><p>在Ruby的安装路径找到 文件convertible.rb</p></li>
+</ol>
+
+
+<p>C:\Ruby193\lib\ruby\gems\1.9.1\gems\jekyll-0.12.0\lib\jekyll\convertible.rb</p>
+
+<p>将27行修改为：self.content = File.read(File.join(base, name), :encoding => &lsquo;utf-8&rsquo;)</p>
+
+<h2>在Octopress中添加文章</h2>
+
+<p>使用下面命令可以在Octopress中添加文章</p>
+
+<p>注意，rake new_post[&lsquo;my first octopress blog&rsquo;]中的my first octopress blog 并不是博客标题，而是和生成的文件名以及url地址有关，该名称不支持中文。博客标题可以在生成的markdown文件中修改。生成的markdown文件在octopress/source/_posts目录中。</p>
+
+<p>编辑markdown文件，将标题可以修改为中文标题，还可以设置分类等信息以及编写正文部分</p>
+
+<p>每次执行了添加博客的命令，或是修改了现有博客的内容后，都要执行下面命令进行重新生成</p>
+
+<p>rake generate
+如果之前有输入rake preview的命令提示符窗口没关，可以直接localhost:4000来进行预览，否则需要重新执行下rake preview才能进行预览。</p>
+
+<p>将Octopress发布到Github
+首先需要您有一个Github的账号，并且知道怎么样将Git项目推送到Github上，具体配置可以参考我之前的博文《Windows 下使用Git管理Github项目》</p>
+
+<p>登录到Github，创建一个名为username.github.com的repository，例如我创建的为oec2003.github.com；</p>
+
+<p>在命令提示符中进入到Octopress目录，输入下面命令：</p>
+
+<p>rake setup_github_pages
+按照提示输入新建的repository的地址，例如我的地址为：</p>
+
+<p>git@github.com:oec2003/oec2003.github.com.git</p>
+
+<p>执行命令rake deploy 就可以将本地的内容发布到Github上。</p>
+
+<p>最后需要将Octopress的源文件推送到Github的Source分支上，执行下面命令即可：</p>
+
+<p>git add .
+git commit -m “your message”
+git push origin source
+总结
+如果喜欢写博客有很多的平台可以选择，像博客园就是Net平台下很好的博客平台，如果想搭建自己的个人博客有独立的域名，WordPress是不错的选择，如果您喜欢折腾，不妨试试Octopress。在环境搭建好的情况下，使用Octopress写博客大致有一下几个步骤：</p>
+
+<ol>
+<li><p>执行rake new_post[&lsquo;title&rsquo;]来生成一个博文；</p></li>
+<li><p>找对生成的markdown文件，编辑内容，当然是使用markdown语法来编辑；</p></li>
+<li><p>执行rake generate来生成文章；</p></li>
+<li><p>执行rake preview在本地预览；</p></li>
+<li><p>执行rake deploy发布到Github中。</p></li>
+<li><p>执行下面命令将修改的源码推送到source分支：</p></li>
+</ol>
+
+
+<p>git add .
+git commit -m “your message”
+git push origin source
+在安装的过程中可能会碰到各种问题，根据错误提示信息google，肯定会找到答案。</p>
+
+<h2>最后推荐一个安装Octopress的视频：</h2>
+
+<p><a href="http://happycasts.net/episodes/36?autoplay=true">http://happycasts.net/episodes/36?autoplay=true</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hello World]]></title>
+    <link href="http://blog.sinopec-wh.com/blog/2013/06/08/hello-world/"/>
+    <updated>2013-06-08T17:17:00+08:00</updated>
+    <id>http://blog.sinopec-wh.com/blog/2013/06/08/hello-world</id>
+    <content type="html"><![CDATA[<h2>开始这个博客了。</h2>
+
+<hr />
+
+<ol>
+<li> 为什么要开这个博客呢？</li>
+<li> 准备记录一些什么东西呢？</li>
+<li> 记录的频率是多少？</li>
+<li> 预计会有谁来看呢？</li>
+</ol>
+
+
+<hr />
+
+<!--more-->
+
+
+<h3>1. 为什么要开这个博客呢？</h3>
+
+<p>  <strong>当然</strong>是为了记录一些日常需要记录和收集的资料。其实用于日常收集的软件有很多，有网络版的，有本地版的。这些都可以用于记录和收集。为什么还需要开一个博客？其实这是一种自我约束的行为。本人的拖延症非常严重，明明有好多很重要的事情需要处理，但是就是提不起劲来，要不就是半途而废。我对自己这样的毛病也是深恶痛绝的，但是也没有好的办法。开通博客可以督促我认真的对待，因为会有很多人来看到我的这样的拖延而羞愧。</p>
+
+<h3>2.准备记录一些什么东西呢?</h3>
+
+<ul>
+<li>首先是一些日常的随笔，日常活动和感受。这更像是一个微博，但是只记录一些比较特殊和重要的事件和想法。这也是不同于微博的那种事无巨细随时记录的方式。</li>
+<li>工作记录：工作中遇到的问题及其解决方案。这个可能会涉及到一些保密的内容，希望不会有人来追究。我也会注意尽量不涉及到特定公司的内容。</li>
+<li>项目开发笔记：由于经常会涉及到开发一些项目和一些新的创意。所以我会把它们都记录下来作为一个收集想法、方法、创意的收集器。</li>
+<li><h2>学习笔记：由于最近准备备考司法考试，也不知道能不能坚持下来。但是这个作为以后能否改善现况的重点内容，我希望我能把这个持续进行下去。</h2>
+
+<h3>3.记录的频率是多少？</h3>
+
+<p>其实这个对于一般的博主来说不是问题，但是由于我上面提及的拖延症的问题，我在这里才会特别提出这个问题。我希望，不，我决定每四天必须有一篇博文。对自己不能太放松，不然这个又成为了烂尾工程。</p></li>
+</ul>
+
+
+<h3>4.预计谁会来看</h3>
+
+<p>  呵呵，这个还真不好说。开始的时候我还是希望不要有人来看吧。嘻嘻</p>
+]]></content>
+  </entry>
+  
+</feed>
