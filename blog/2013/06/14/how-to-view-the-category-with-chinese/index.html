@@ -107,24 +107,41 @@
 <p>我也不知道如何调试ruby的程序，只好看看他的源代码了！哎！
  网上的代码是这样的</p>
 
-<pre><code>module Jekyll 
-class CategoryListTag &lt; Liquid::Tag 
- def render(context) 
- html = "" 
- categories = context.registers[:site].categories.keys 
- categories.sort.each do |category| 
- posts_in_category = context.registers[:site].categories[category].size 
- category_dir = context.registers[:site].config['category_dir'] 
- category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase) 
- html &lt;&lt; "&lt;li class='category'&gt;&lt;a href='/#{category_url}/'&gt;#{category} (#{posts_in_category})&lt;/a&gt;&lt;/li&gt;\n" 
-  end 
-  html 
- end 
-  end 
-end
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>module Jekyll 
+</span><span class='line'>  class CategoryListTag &lt; Liquid::Tag 
+</span><span class='line'>   def render(context) 
+</span><span class='line'>   html = "" 
+</span><span class='line'>   categories = context.registers[:site].categories.keys 
+</span><span class='line'>   categories.sort.each do |category| 
+</span><span class='line'>   posts_in_category = context.registers[:site].categories[category].size 
+</span><span class='line'>   category_dir = context.registers[:site].config['category_dir'] 
+</span><span class='line'>   category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase) 
+</span><span class='line'>   html &lt;&lt; "&lt;li class='category'>&lt;a href='/#{category_url}/'>#{category} (#{posts_in_category})&lt;/a>&lt;/li>\n" 
+</span><span class='line'>    end 
+</span><span class='line'>    html 
+</span><span class='line'>   end 
+</span><span class='line'>    end 
+</span><span class='line'>  end
+</span><span class='line'>   
+</span><span class='line'>  Liquid::Template.register_tag('category_list', Jekyll::CategoryListTag)</span></code></pre></td></tr></table></div></figure>
 
-Liquid::Template.register_tag('category_list', Jekyll::CategoryListTag)
-</code></pre>
 
 <p>编译时报错在</p>
 
