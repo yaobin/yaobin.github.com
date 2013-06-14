@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>我的博客</title>
+  <title>怎样在页面上显示中文分类 - 我的博客</title>
   <meta name="author" content="unknown">
 
   
@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.sinopec-wh.com">
+  <link rel="canonical" href="http://blog.sinopec-wh.com/blog/2013/06/14/how-to-view-the-category-with-chinese">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="我的博客" type="application/atom+xml">
@@ -65,15 +65,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/06/14/how-to-view-the-category-with-chinese/">怎样在页面上显示中文分类</a></h1>
+      <h1 class="entry-title">怎样在页面上显示中文分类</h1>
     
     
       <p class="meta">
@@ -96,129 +93,107 @@
   </header>
 
 
-  <div class="entry-content"><p>最近开始开始鼓捣octopress的博客。由于对ruby一窍不通，弄起来非常费劲。
+<div class="entry-content"><p>最近开始开始鼓捣octopress的博客。由于对ruby一窍不通，弄起来非常费劲。
 看到很多网上的文章，也不知道谁是原创的。但是可能是采用的版本比较老的缘故，一些方法都已经过时了。
 刚好我想要添加一个分类的列表到“边栏”，Octopress中叫做asides。按照网上的文章说的修改了一些文件，但是在generate的时候无法通过，好像报错说是编码的问题。于是我想到了我的博客上采用了中文的分类，Octopress已经在最新的版本中支持了中文分类，并且将url编译成拼音的字符串。但是网上提供的办法更不就无法编译通过，然道要用回英文分类，这不是倒退么？</p>
 
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/06/14/how-to-view-the-category-with-chinese/">阅读全文 &rarr;</a>
-    </footer>
-  
+<!--more-->
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/08/create-blog-with-octopress-on-windows/">Windows下搭建Octopress博客</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-08T18:07:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>您需要掌握的</h2>
-
-<p>使用Octopress来搭建博客，还是有一定门槛的，看完本文后，希望您不会觉得很难。</p>
-
-<p>Octopress 是一款基于 Jekyll 的静态站点生成系统，使用Ruby实现，所以您需要懂点Ruby的知识，其实会几个命令就行；</p>
-
-<p>Octopress的博客内容是通过Markdown来书写，所以您需要了解Markdown的编写规则，Markdown 语法说明可以让你在几分钟之内熟悉Markdown的语法，在Windows下可以使用MarkDown Pad或是使用在线的编辑器<a href="http://mahua.jser.me/%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%BE%91%EF%BC%9B">http://mahua.jser.me/%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%BE%91%EF%BC%9B</a></p>
-
-<p>Octopress通常会部署在GitHub上，所以您需要会一些简单的Git命令以及Gtihub的使用。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/06/08/create-blog-with-octopress-on-windows/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/08/hello-world/">Hello World</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-08T17:17:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>开始这个博客了。</h2>
+<blockquote></blockquote>
 
 <hr />
 
-<ol>
-<li> 为什么要开这个博客呢？</li>
-<li> 准备记录一些什么东西呢？</li>
-<li> 记录的频率是多少？</li>
-<li> 预计会有谁来看呢？</li>
-</ol>
+<p>我也不知道如何调试ruby的程序，只好看看他的源代码了！哎！
+ 网上的代码是这样的</p>
+
+<pre><code>    module Jekyll 
+      class CategoryListTag &lt; Liquid::Tag 
+    def render(context) 
+      html = "" 
+      categories = context.registers[:site].categories.keys 
+      categories.sort.each do |category| 
+    posts_in_category = context.registers[:site].categories[category].size 
+    category_dir = context.registers[:site].config['category_dir'] 
+    category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase) 
+    html &lt;&lt; "&lt;li class='category'&gt;&lt;a href='/#{category_url}/'&gt;#{category} (#{posts_in_category})&lt;/a&gt;&lt;/li&gt;\n" 
+      end 
+      html 
+    end 
+      end 
+    end
+
+    Liquid::Template.register_tag('category_list', Jekyll::CategoryListTag)
+</code></pre>
+
+<p>编译时报错在</p>
+
+<pre><code>category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase) 
+</code></pre>
+
+<p>经过一番波折，终于找到了解决的方案。其实很简单。由于新的版本已经支持了中文的分类，自然是支持直接输出分类的地址的。将上面报错的那行改成：</p>
+
+<pre><code>category_url = File.join(category_dir, category.to_url) 
+</code></pre>
+
+<p>就好了。呵呵，是不是很简单呀！</p>
+
+<p>哦，对了别忘了在 category_list_tag.rb中加入一行</p>
+
+<pre><code>require 'stringex'
+</code></pre>
+</div>
 
 
-<hr />
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">unknown</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-14T13:40:00+08:00" pubdate data-updated="true">Jun 14<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/06/08/create-blog-with-octopress-on-windows/" title="Previous Post: Windows下搭建Octopress博客">&laquo; Windows下搭建Octopress博客</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/06/08/hello-world/">阅读全文 &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -253,6 +228,7 @@
 
   
 </aside>
+
 
     </div>
   </div>

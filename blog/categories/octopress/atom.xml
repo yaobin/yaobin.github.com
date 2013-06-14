@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 我的博客]]></title>
   <link href="http://blog.sinopec-wh.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://blog.sinopec-wh.com/"/>
-  <updated>2013-06-14T14:19:04+08:00</updated>
+  <updated>2013-06-14T14:21:54+08:00</updated>
   <id>http://blog.sinopec-wh.com/</id>
   <author>
     <name><![CDATA[unknown]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[怎样在页面上显示中文分类]]></title>
+    <link href="http://blog.sinopec-wh.com/blog/2013/06/14/how-to-view-the-category-with-chinese/"/>
+    <updated>2013-06-14T13:40:00+08:00</updated>
+    <id>http://blog.sinopec-wh.com/blog/2013/06/14/how-to-view-the-category-with-chinese</id>
+    <content type="html"><![CDATA[<p>最近开始开始鼓捣octopress的博客。由于对ruby一窍不通，弄起来非常费劲。
+看到很多网上的文章，也不知道谁是原创的。但是可能是采用的版本比较老的缘故，一些方法都已经过时了。
+刚好我想要添加一个分类的列表到“边栏”，Octopress中叫做asides。按照网上的文章说的修改了一些文件，但是在generate的时候无法通过，好像报错说是编码的问题。于是我想到了我的博客上采用了中文的分类，Octopress已经在最新的版本中支持了中文分类，并且将url编译成拼音的字符串。但是网上提供的办法更不就无法编译通过，然道要用回英文分类，这不是倒退么？</p>
+
+<!--more-->
+
+
+<blockquote></blockquote>
+
+<hr />
+
+<p>我也不知道如何调试ruby的程序，只好看看他的源代码了！哎！
+ 网上的代码是这样的</p>
+
+<pre><code>    module Jekyll 
+      class CategoryListTag &lt; Liquid::Tag 
+    def render(context) 
+      html = "" 
+      categories = context.registers[:site].categories.keys 
+      categories.sort.each do |category| 
+    posts_in_category = context.registers[:site].categories[category].size 
+    category_dir = context.registers[:site].config['category_dir'] 
+    category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase) 
+    html &lt;&lt; "&lt;li class='category'&gt;&lt;a href='http://blog.sinopec-wh.com/#{category_url}/'&gt;#{category} (#{posts_in_category})&lt;/a&gt;&lt;/li&gt;\n" 
+      end 
+      html 
+    end 
+      end 
+    end
+
+    Liquid::Template.register_tag('category_list', Jekyll::CategoryListTag)
+</code></pre>
+
+<p>编译时报错在</p>
+
+<pre><code>category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase) 
+</code></pre>
+
+<p>经过一番波折，终于找到了解决的方案。其实很简单。由于新的版本已经支持了中文的分类，自然是支持直接输出分类的地址的。将上面报错的那行改成：</p>
+
+<pre><code>category_url = File.join(category_dir, category.to_url) 
+</code></pre>
+
+<p>就好了。呵呵，是不是很简单呀！</p>
+
+<p>哦，对了别忘了在 category_list_tag.rb中加入一行</p>
+
+<pre><code>require 'stringex'
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Windows下搭建Octopress博客]]></title>
