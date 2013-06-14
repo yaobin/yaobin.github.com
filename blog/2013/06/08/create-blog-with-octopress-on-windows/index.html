@@ -137,11 +137,13 @@ DevKit下载下来的是一个自压缩文件，我们将其解压到D:/DevKit�
 
 <p>解压DevKit后，在命令行输入以下命令来进行安装：</p>
 
-<p>d:
-cd DevKit
-ruby dk.rb init
-ruby dk.rb install
-安装Python
+<pre><code>    d:
+    cd DevKit
+    ruby dk.rb init
+    ruby dk.rb install
+</code></pre>
+
+<p>安装Python
 安装Python,也是一路next就可以，博客的代码高亮用到了Python的Pygments模块，在Python中安装第三方库需要使用easy_install，在下面地址下载跟Python相对应的安装程序安装后就可以使用easy_install了。</p>
 
 <p><a href="https://pypi.python.org/pypi/setuptools">https://pypi.python.org/pypi/setuptools</a></p>
@@ -154,45 +156,50 @@ ruby dk.rb install
 安装Octopress
 首先在GitBash中输入如下命令将Octopress代码拉到本地，</p>
 
-<p>cd d:/GitProject
-git clone git://github.com/imathis/octopress.git octopress
-然后需要安装Octopress的依赖项，安装依赖项需要用到Ruby的gem，使用下面的命令可以更换gem的更新源，使用国内的淘宝镜像速度相对快点。</p>
+<pre><code>    cd d:/GitProject
+    git clone git://github.com/imathis/octopress.git octopress
+</code></pre>
 
-<p>gem sources -a <a href="http://ruby.taobao.org/">http://ruby.taobao.org/</a>
-gem sources -r <a href="http://rubygems.org/">http://rubygems.org/</a>
+<p>然后需要安装Octopress的依赖项，安装依赖项需要用到Ruby的gem，使用下面的命令可以更换gem的更新源，使用国内的淘宝镜像速度相对快点。</p>
+
+<pre><code>gem sources -a http://ruby.taobao.org/
+gem sources -r http://rubygems.org/
 gem sources -l
-修改Octopress目录下的Gemfile文件，将第一行的<a href="http://rubygems.org/">http://rubygems.org/</a> 修改为<a href="http://ruby.taobao.org/">http://ruby.taobao.org/</a></p>
+</code></pre>
+
+<p>修改Octopress目录下的Gemfile文件，将第一行的<a href="http://rubygems.org/">http://rubygems.org/</a> 修改为<a href="http://ruby.taobao.org/">http://ruby.taobao.org/</a></p>
 
 <p>在命令提示符中进入到Octopress目录，输入下面命令进行依赖项的安装</p>
 
-<p>gem install bundler
+<pre><code>gem install bundler
 bundle install
-输入下面的命令来安装Octopress的默认主题</p>
+</code></pre>
 
-<p>rake install
-到此所有的安装工作已经结束，输入下面的命令可以在本地进行预览。</p>
+<p>输入下面的命令来安装Octopress的默认主题</p>
 
-<p>rake preview</p>
+<pre><code>rake install
+</code></pre>
+
+<p>到此所有的安装工作已经结束，输入下面的命令可以在本地进行预览。</p>
+
+<pre><code>rake preview
+</code></pre>
 
 <h2>解决中文问题</h2>
 
 <p>如果博客中包含中文，需要进行如下设置：</p>
 
 <ol>
-<li>在环境变量中设置下面的键值对；</li>
-</ol>
+<li><p>在环境变量中设置下面的键值对；</p>
 
-
-<p>LANG=zh_CN.UTF-8
-LC_ALL=zh_CN.UTF-8</p>
-
-<ol>
+<p> LANG=zh_CN.UTF-8
+ LC_ALL=zh_CN.UTF-8</p></li>
 <li><p>含有中文的文件需要保存为UTF-8无BOM格式编码。</p></li>
-<li><p>在Ruby的安装路径找到 文件convertible.rb</p></li>
+<li><p>在Ruby的安装路径找到 文件convertible.rb</p>
+
+<p> C:\Ruby193\lib\ruby\gems\1.9.1\gems\jekyll-0.12.0\lib\jekyll\convertible.rb</p></li>
 </ol>
 
-
-<p>C:\Ruby193\lib\ruby\gems\1.9.1\gems\jekyll-0.12.0\lib\jekyll\convertible.rb</p>
 
 <p>将27行修改为：self.content = File.read(File.join(base, name), :encoding => &lsquo;utf-8&rsquo;)</p>
 
@@ -206,8 +213,10 @@ LC_ALL=zh_CN.UTF-8</p>
 
 <p>每次执行了添加博客的命令，或是修改了现有博客的内容后，都要执行下面命令进行重新生成</p>
 
-<p>rake generate
-如果之前有输入rake preview的命令提示符窗口没关，可以直接localhost:4000来进行预览，否则需要重新执行下rake preview才能进行预览。</p>
+<pre><code>rake generate
+</code></pre>
+
+<p>如果之前有输入rake preview的命令提示符窗口没关，可以直接localhost:4000来进行预览，否则需要重新执行下rake preview才能进行预览。</p>
 
 <p>将Octopress发布到Github
 首先需要您有一个Github的账号，并且知道怎么样将Git项目推送到Github上，具体配置可以参考我之前的博文《Windows 下使用Git管理Github项目》</p>
@@ -216,19 +225,24 @@ LC_ALL=zh_CN.UTF-8</p>
 
 <p>在命令提示符中进入到Octopress目录，输入下面命令：</p>
 
-<p>rake setup_github_pages
-按照提示输入新建的repository的地址，例如我的地址为：</p>
+<pre><code>rake setup_github_pages
+</code></pre>
 
-<p>git@github.com:oec2003/oec2003.github.com.git</p>
+<p>按照提示输入新建的repository的地址，例如我的地址为：</p>
+
+<pre><code>git@github.com:oec2003/oec2003.github.com.git
+</code></pre>
 
 <p>执行命令rake deploy 就可以将本地的内容发布到Github上。</p>
 
 <p>最后需要将Octopress的源文件推送到Github的Source分支上，执行下面命令即可：</p>
 
-<p>git add .
+<pre><code>git add .
 git commit -m “your message”
 git push origin source
-总结
+</code></pre>
+
+<p>总结
 如果喜欢写博客有很多的平台可以选择，像博客园就是Net平台下很好的博客平台，如果想搭建自己的个人博客有独立的域名，WordPress是不错的选择，如果您喜欢折腾，不妨试试Octopress。在环境搭建好的情况下，使用Octopress写博客大致有一下几个步骤：</p>
 
 <ol>
@@ -237,14 +251,14 @@ git push origin source
 <li><p>执行rake generate来生成文章；</p></li>
 <li><p>执行rake preview在本地预览；</p></li>
 <li><p>执行rake deploy发布到Github中。</p></li>
-<li><p>执行下面命令将修改的源码推送到source分支：</p></li>
+<li><p>执行下面命令将修改的源码推送到source分支：</p>
+
+<p> git add .
+ git commit -m “your message”
+ git push origin source
+在安装的过程中可能会碰到各种问题，根据错误提示信息google，肯定会找到答案。</p></li>
 </ol>
 
-
-<p>git add .
-git commit -m “your message”
-git push origin source
-在安装的过程中可能会碰到各种问题，根据错误提示信息google，肯定会找到答案。</p>
 
 <h2>最后推荐一个安装Octopress的视频：</h2>
 
