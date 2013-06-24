@@ -4,7 +4,7 @@
   <title><![CDATA[我的博客]]></title>
   <link href="http://blog.sinopec-wh.com/atom.xml" rel="self"/>
   <link href="http://blog.sinopec-wh.com/"/>
-  <updated>2013-06-18T14:10:20+08:00</updated>
+  <updated>2013-06-24T17:54:48+08:00</updated>
   <id>http://blog.sinopec-wh.com/</id>
   <author>
     <name><![CDATA[unknown]]></name>
@@ -12,6 +12,168 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[hello]]></title>
+    <link href="http://blog.sinopec-wh.com/blog/2013/06/24/hello/"/>
+    <updated>2013-06-24T13:08:00+08:00</updated>
+    <id>http://blog.sinopec-wh.com/blog/2013/06/24/hello</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[百度集成开发环境安装]]></title>
+    <link href="http://blog.sinopec-wh.com/blog/2013/06/24/new/"/>
+    <updated>2013-06-24T13:00:00+08:00</updated>
+    <id>http://blog.sinopec-wh.com/blog/2013/06/24/new</id>
+    <content type="html"><![CDATA[<h2>概述</h2>
+
+<h3>安装Baidu Eclipse插件需要进行以下操作：</h3>
+
+<ol>
+<li>安装Eclipse</li>
+<li>安装依赖插件</li>
+<li>安装Baidu Eclipse插件
+此外，您也可以直接下载安装已预装了Baidu Eclipse插件的Eclipse。详细信息请参考“一键安装”部分信息。</li>
+</ol>
+
+
+<h3>安装Eclipse</h3>
+
+<p>Baidu Eclipse插件只适用于Eclipse 3.7.x版本，暂不支持Eclipse 4.0及更高版本；您可在官方网站下载相关版本的Eclipse。</p>
+
+<p>如果您是Windows用户，需要注意Baidu Eclipse插件不支持IE 6，请升级至IE 8或更高版本；且不要将Eclipse放置在中文目录中，以免遇到相关插件的兼容性问题。</p>
+
+<h3>安装依赖插件</h3>
+
+<h3>开发BAE应用</h3>
+
+<p>目前Baidu Eclipse插件只支持BAE PHP及Java应用开发。</p>
+
+<h4>BAE PHP开发</h4>
+
+<p>如果您是BAE PHP开发者，请在安装Baidu Eclipse插件之前，先安装Eclipse官方的PHP开发插件：PDT（PHP Developer Tools）插件。</p>
+
+<p>安装Baidu Eclipse插件时会自动安装PDT；但如果您想自己安装的话，也可参考以下步骤：</p>
+
+<ol>
+<li><p>启动Eclipse，在菜单栏中选择“Help > Install New Software&hellip;”；</p></li>
+<li><p>在“Work with”下拉列表中找到“Indigo”；</p></li>
+<li><p>等待窗口中央的可用软件列表加载完毕（这一步可能需要持续数分钟）；</p></li>
+<li><p>单击“Programming Languages”中的“PHP Developer Tools”左侧的复选框（如图1所示）；</p></li>
+<li><p>单击“Next”按钮并按提示完成安装。</p></li>
+</ol>
+
+
+<p>图1：勾选“PHP Developer Tools”</p>
+
+<p>如果您的机器无法访问PDT相关的更新页，您也可以下载使用我们的镜像安装包（已在Windows、ubuntu、Mac OS X等操作系统测试）。</p>
+
+<p>下载前请先阅读相关《授权协议》。</p>
+
+<p>PDT 3.0.1及其依赖的DLTK等插件：
+pdt-3.0.1.v201201110400-win32.zip
+BAE Java开发
+Baidu Eclipse插件并不依赖其他Java插件，但是我们建议BAE Java开发者安装Eclipse Java Web Developer Tools插件，该插件能更好地满足JSP开发的要求。</p>
+
+<p>安装Baidu Eclipse插件时不会自动安装Eclipse Java Web Developer Tools插件；但您可以根据以下步骤自己安装：</p>
+
+<ol>
+<li><p>启动Eclipse，在菜单栏中选择“Help > Install New Software&hellip;”；</p></li>
+<li><p>在“Work with”下拉列表中找到“Indigo”；</p></li>
+<li><p>等待可用软件列表加载完毕（可能需要持续数分钟）；</p></li>
+<li><p>单击“Web, XML,Java EE and OSGi Enterprise Development”中的“Eclipse Java Web Developer Tools”左侧的复选框（如图2所示）；</p></li>
+<li><p>单击“Next”按钮并按提示完成安装。</p></li>
+</ol>
+
+
+<p>图2：勾选“Eclipse Java Web Developer Tools”</p>
+
+<p>如果您的机器无法访问Eclipse Java Web Developer Tools相关的更新页，您也可下载使用我们的镜像安装包（已在Windows、ubuntu、Mac OS X等操作系统进行过测试）。</p>
+
+<p>下载前请先阅读相关《授权协议》。</p>
+
+<p>JSP代码提示相关功能需要安装Eclipse Java Web Developer Tools 3.3.2及其依赖插件：
+jst.web_3.3.2.v201112072049-win32.zip
+JSP站点的其它有关功能可以安装Eclipse Java EE Developer Tools 3.3.2及其依赖插件：
+j2ee_3.3.2.v201111030500-win32.zip
+测试Android应用
+如果您需要通过百度移动云测试中心（MTC）来测试您的Android应用程序，就需要先安装Android开发的官方插件ADT（Android Development Tools）插件（如图3所示）。</p>
+
+<p>ADT在线安装地址：<a href="http://dl-ssl.google.com/android/eclipse/">http://dl-ssl.google.com/android/eclipse/</a></p>
+
+<p>图3：安装ADT插件</p>
+
+<p>安装Baidu Eclipse插件</p>
+
+<p>安装Baidu Eclipse插件有以下方法：</p>
+
+<p>在线安装
+离线安装
+一键安装
+在线安装
+在线安装地址：<a href="http://bs.baidu.com/cloud-develop-toolkits/">http://bs.baidu.com/cloud-develop-toolkits/</a>
+注意:
+请使用Eclipse的安装功能访问该地址，勿直接使用浏览器进行访问。</p>
+
+<p>在线安装Baidu Eclipse插件的具体步骤如下：</p>
+
+<ol>
+<li><p>启动Eclipse，在菜单栏中选择“Help > Install New Software&hellip;”；</p></li>
+<li><p>在Work with后填入Baidu Eclipse插件的以下在线安装地址并点击“Add”（如图4所示）：
+<a href="http://bs.baidu.com/cloud-develop-toolkits/">http://bs.baidu.com/cloud-develop-toolkits/</a></p></li>
+<li><p>在插件功能列表中，勾选需要安装的功能项。
+注意:
+为节省安装时间，您可以选装其中某一项功能，而不必勾选所有项目。</p></li>
+</ol>
+
+
+<p>例如： 如果您是Java网站的开发者，无需开发PHP网站或测试Android工程，就可仅勾选“Baidu App Engine Tools for JAVA”。</p>
+
+<p>图4：在线安装Baidu Eclipse插件</p>
+
+<p>离线安装
+Baidu Eclipse插件还支持先下载安装包，再使用安装包进行离线安装。有关离线安装的详细信息，请参考下文。</p>
+
+<p>注意:
+推荐您首选在线安装方式，而将离线安装作为您通过在线方式安装失败时的补救安装方案。</p>
+
+<p>下载安装包
+离线安装包下载：baidu-eclipse-plugins-offline-1.5.0.zip</p>
+
+<p>离线安装步骤
+1. 启动Eclipse，在菜单栏中选择“Help > Install New Software&hellip;”；</p>
+
+<ol>
+<li><p>点击“work with”输入框最右侧的“add 按钮；</p></li>
+<li><p>在弹出的对话框中，在“name”输入框中给即将要安装的Baidu Eclipse插件起一个名字（如：bdt）；</p></li>
+<li><p>在“location”输入框的最右侧，使用右侧的“archive”按钮浏览到刚刚下载的安装包位置；</p></li>
+<li><p>点击打开后，显示下图：</p></li>
+<li><p>点击“OK”，开始安装；</p></li>
+<li><p>根据提示完成安装。</p></li>
+</ol>
+
+
+<h2>一键安装</h2>
+
+<p>如果在线安装和离线安装都不成功的话，我们还为您提供了已预装了Baidu Eclipse插件的Eclipse下载安装包。</p>
+
+<p>目前提供了适用于 Windows、Ubuntu 和 Mac 等运行环境的下载安装包，具体下载地址如下：</p>
+
+<p>Windows 环境下：</p>
+
+<p>eclipse-bdt-win32.rar
+eclipse-bdt-win64.rar
+Ubuntu 环境下：</p>
+
+<p>eclipse-bdt-ubuntu64.tgz
+eclipse-bdt-ubuntu32.tgz
+Mac 环境下：</p>
+
+<p>eclipse-bdt-mac.tgz</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[司法考试简介]]></title>
@@ -255,6 +417,8 @@
 
 <pre><code>require 'stringex'
 </code></pre>
+
+<p>这样to_url就可以执行了。</p>
 ]]></content>
   </entry>
   

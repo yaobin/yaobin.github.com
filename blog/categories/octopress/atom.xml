@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 我的博客]]></title>
   <link href="http://blog.sinopec-wh.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://blog.sinopec-wh.com/"/>
-  <updated>2013-06-18T14:10:20+08:00</updated>
+  <updated>2013-06-24T17:54:48+08:00</updated>
   <id>http://blog.sinopec-wh.com/</id>
   <author>
     <name><![CDATA[unknown]]></name>
@@ -92,6 +92,8 @@
 
 <pre><code>require 'stringex'
 </code></pre>
+
+<p>这样to_url就可以执行了。</p>
 ]]></content>
   </entry>
   
