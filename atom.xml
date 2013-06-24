@@ -4,7 +4,7 @@
   <title><![CDATA[我的博客]]></title>
   <link href="http://blog.sinopec-wh.com/atom.xml" rel="self"/>
   <link href="http://blog.sinopec-wh.com/"/>
-  <updated>2013-06-24T18:03:56+08:00</updated>
+  <updated>2013-06-24T18:08:43+08:00</updated>
   <id>http://blog.sinopec-wh.com/</id>
   <author>
     <name><![CDATA[unknown]]></name>
@@ -174,15 +174,15 @@ Baidu Eclipse插件还支持先下载安装包，再使用安装包进行离线�
 
 <p>Windows 环境下：</p>
 
-<p>eclipse-bdt-win32.rar
-eclipse-bdt-win64.rar
+<p><a href="eclipse-bdt-win32.rar">http://bcs.duapp.com/cplat-01/ide%2Feclipse-bdt-win32.rar</a>
+<a href="eclipse-bdt-win64.rar">http://bcs.duapp.com/cplat-01/ide%2Feclipse-bdt-win64.rar</a>
 Ubuntu 环境下：</p>
 
-<p>eclipse-bdt-ubuntu64.tgz
-eclipse-bdt-ubuntu32.tgz
+<p><a href="eclipse-bdt-ubuntu64.tgz">http://bcs.duapp.com/cplat-01/ide%2Feclipse-bdt-ubuntu64.tgz</a>
+<a href="eclipse-bdt-ubuntu32.tgz">http://developer.baidu.com/wiki/static/BDT/IDE/eclipse-bdt-ubuntu32.tgz</a>
 Mac 环境下：</p>
 
-<p>eclipse-bdt-mac.tgz</p>
+<p><a href="eclipse-bdt-mac.tgz">http://bcs.duapp.com/cplat-01/ide%2Feclipse-bdt-mac.tgz</a></p>
 ]]></content>
   </entry>
   
