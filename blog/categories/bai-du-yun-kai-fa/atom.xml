@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 百度云开发 | 我的博客]]></title>
   <link href="http://blog.sinopec-wh.com/blog/categories/bai-du-yun-kai-fa/atom.xml" rel="self"/>
   <link href="http://blog.sinopec-wh.com/"/>
-  <updated>2013-06-24T18:12:40+08:00</updated>
+  <updated>2013-06-24T18:27:19+08:00</updated>
   <id>http://blog.sinopec-wh.com/</id>
   <author>
     <name><![CDATA[unknown]]></name>
@@ -187,23 +187,23 @@ Baidu Eclipse插件还支持先下载安装包，再使用安装包进行离线�
 <p>Windows 环境下：</p>
 
 <ul>
-<li><a href="eclipse-bdt-win32.rar">http://bcs.duapp.com/cplat-01/ide%2Feclipse-bdt-win32.rar</a></li>
-<li><a href="eclipse-bdt-win64.rar">http://bcs.duapp.com/cplat-01/ide%2Feclipse-bdt-win64.rar</a></li>
+<li><a href="http://bcs.duapp.com/cplat-01/ide%2Feclipse-bdt-win32.rar">eclipse-bdt-win32.rar</a></li>
+<li><a href="http://bcs.duapp.com/cplat-01/ide%2Feclipse-bdt-win64.rar">eclipse-bdt-win64.rar</a></li>
 </ul>
 
 
 <p>Ubuntu 环境下：</p>
 
 <ul>
-<li><a href="eclipse-bdt-ubuntu64.tgz">http://bcs.duapp.com/cplat-01/ide%2Feclipse-bdt-ubuntu64.tgz</a></li>
-<li><a href="eclipse-bdt-ubuntu32.tgz">http://developer.baidu.com/wiki/static/BDT/IDE/eclipse-bdt-ubuntu32.tgz</a></li>
+<li><a href="http://bcs.duapp.com/cplat-01/ide%2Feclipse-bdt-ubuntu64.tgz">eclipse-bdt-ubuntu64.tgz</a></li>
+<li><a href="http://developer.baidu.com/wiki/static/BDT/IDE/eclipse-bdt-ubuntu32.tgz">eclipse-bdt-ubuntu32.tgz</a></li>
 </ul>
 
 
 <p>Mac 环境下：</p>
 
 <ul>
-<li><a href="eclipse-bdt-mac.tgz">http://bcs.duapp.com/cplat-01/ide%2Feclipse-bdt-mac.tgz</a></li>
+<li><a href="http://bcs.duapp.com/cplat-01/ide%2Feclipse-bdt-mac.tgz">eclipse-bdt-mac.tgz</a></li>
 </ul>
 
 ]]></content>
